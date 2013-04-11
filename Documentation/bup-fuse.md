@@ -39,6 +39,12 @@ should unmount it with `umount`(8).
 :   permit other users to access the filesystem. Necessary for
     exporting the filesystem via Samba, for example.
 
+-p, \--defer-permissions
+:   disables local permission checks and forwards all requests
+    to the remote server. Specific for OS X. Look at
+    https://github.com/osxfuse/filesystems/issues/1#issuecomment-3612902
+    for an explanation.
+
 # EXAMPLE
 
     rm -rf /tmp/buptest

@@ -115,6 +115,7 @@ bup fuse [-d] [-f] <mountpoint>
 d,debug   increase debug level
 f,foreground  run in foreground
 o,allow-other allow other users to access the filesystem
+p,defer-permissions disables local permission checks and forwards all requests to the remote server (OS X)
 """
 o = options.Options(optspec)
 (opt, flags, extra) = o.parse(sys.argv[1:])
@@ -134,5 +135,8 @@ print f.multithreaded
 f.multithreaded = False
 if opt.allow_other:
     f.fuse_args.add('allow_other')
+# Look at https://github.com/osxfuse/filesystems/issues/1#issuecomment-3612902 for an explanation
+if opt.defer_permissions:
+    f.fuse_args.add('defer_permissions')
 
 f.main()
